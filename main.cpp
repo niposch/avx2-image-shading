@@ -70,7 +70,7 @@ typedef struct pixel32Args_t {
 
 void modify32Pixel(unsigned char * input, unsigned char * output){
     #if __AVX2__
-    __m256i input1 = _mm256_load_si256((__m256i*) input);
+    __m256i input1 = _mm256_loadu_si256((__m256i*) input);
     __m256i darker = _mm256_subs_epu8(input1, darkenVector);
     _mm256_storeu_si256((__m256i*) output, darker);
     #else
